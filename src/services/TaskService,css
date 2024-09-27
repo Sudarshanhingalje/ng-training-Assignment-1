@@ -1,0 +1,177 @@
+/* Style the user names in blue */
+.user-name {
+  color: blue;
+}
+
+/* Optional: Add some basic styling to the task list */
+.task-list {
+  font-family: Arial, sans-serif;
+  width: 800px;
+  margin: 100px auto;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.task-header .title-container {
+  display: flex;
+  align-items: center;
+}
+
+.task-header .icon {
+  font-size: 24px;
+  margin-right: 10px;
+  background-color: #fc076d;
+  border-radius: 4px;
+  width: 40px;
+  height: 35px;
+}
+
+.task-header .title {
+  font-size: 18px;
+  font-weight: normal;
+  height: 60px;
+}
+
+.task-header .title span {
+  font-size: 16px;
+  color: #666;
+  margin-left: 5px;
+}
+
+.task-actions button {
+  margin-left: 0px;
+  padding: 5px 10px;
+  background-color: #f5ec9e;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.search-bar {
+  border-bottom: 1px solid #ddd;
+  padding-left: 500px;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.search-icon {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.search-icon:hover {
+  background-color: #e0e0e0;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #fff6a4;
+  min-width: 120px;
+  z-index: 3;
+}
+
+.dropdown-content button {
+  color: black;
+  padding: 5px 10px;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pagination styling */
+.pagination {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.pagination button,
+.pagination span {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Reset default table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+  max-width: 100%;
+}
+
+th,
+td {
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* Remove vertical lines */
+table td,
+table th {
+  border: none;
+}
+
+/* Add horizontal lines */
+table tr:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
