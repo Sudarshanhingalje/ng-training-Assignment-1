@@ -1,33 +1,46 @@
-// This is a mock service. In a real application, you would make API calls here.
+import axios from 'axios';
+
+const API_BASE_URL = 'http://localhost:3001';
+
 const TaskService = {
-    tasks: [
-      { id: 1, assignedTo: 'User 1', status: 'Completed', dueDate: '2024-10-12', priority: 'Low', comments: 'This task is good' },
-      { id: 2, assignedTo: 'User 2', status: 'In Progress', dueDate: '2024-09-14', priority: 'High', comments: 'This' },
-      { id: 3, assignedTo: 'User 3', status: 'Not Started', dueDate: '2024-08-18', priority: 'Low', comments: 'This' },
-      { id: 4, assignedTo: 'User 4', status: 'In Progress', dueDate: '2024-06-12', priority: 'Normal', comments: 'This task is good' },
-    ],
-  
-    getTasks: async () => {
-      return TaskService.tasks;
-    },
-  
-    addTask: async (task) => {
-      const newTask = { ...task, id: Date.now() };
-      TaskService.tasks.push(newTask);
-      return newTask;
-    },
-  
-    updateTask: async (updatedTask) => {
-      const index = TaskService.tasks.findIndex(t => t.id === updatedTask.id);
-      if (index !== -1) {
-        TaskService.tasks[index] = updatedTask;
-      }
-      return updatedTask;
-    },
-  
-    deleteTask: async (taskId) => {
-      TaskService.tasks = TaskService.tasks.filter(t => t.id !== taskId);
+  getTasks: async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/tasks`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+      throw error;
     }
-  };
-  
-  export default TaskService;
+  },
+
+  addTask: async (task) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/tasks`, task);
+      return response.data;
+    } catch (error) {
+      console.error('Error adding task:', error);
+      throw error;
+    }
+  },
+
+  updateTask: async (updatedTask) => {
+    try {
+      const response = await axios.put(`${API_BASE_URL}/tasks/${updatedTask.id}`, updatedTask);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating task:', error);
+      throw error;
+    }
+  },
+
+  deleteTask: async (taskId) => {
+    try {
+      await axios.delete(`${API_BASE_URL}/tasks/${taskId}`);
+    } catch (error) {
+      console.error('Error deleting task:', error);
+      throw error;
+    }
+  }
+};
+
+export default TaskService;

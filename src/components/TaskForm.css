@@ -63,7 +63,8 @@
   background-color: #f9f9f9;
 }
 
-/* Additional spacing between items */
+/* Additional spacing between  the required items */
+
 .task-form input,
 .task-form select,
 .task-form textarea 

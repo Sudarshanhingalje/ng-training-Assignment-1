@@ -9,13 +9,13 @@ const TaskForm = ({ task, onSave, onCancel }) => {
     status: 'Not Started',
     dueDate: '',
     priority: 'Normal',
-    description: '',
+    description: '',  // This will also be reflected in the comments section as "description"
   });
 
   // Effect to populate form data when editing an existing task
   useEffect(() => {
     if (task) {
-      setFormData(task);
+      setFormData(task);  
     }
   }, [task]);
 
@@ -24,14 +24,8 @@ const TaskForm = ({ task, onSave, onCancel }) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: value, 
     }));
-  };
-
-  // Handles form submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the default form submission behavior
-    onSave(formData);   // Calls the save function with the form data
   };
 
   // Handles date input changes
@@ -41,6 +35,17 @@ const TaskForm = ({ task, onSave, onCancel }) => {
       ...prevData,
       dueDate: value,
     }));
+  };
+
+  // Handles form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+
+    // Call the onSave prop with the updated task data
+    onSave({
+      ...formData,
+      id: task ? task.id : Date.now(), // If editing, keep the task ID; otherwise create a new one
+    });
   };
 
   return (
@@ -104,7 +109,7 @@ const TaskForm = ({ task, onSave, onCancel }) => {
             </select>
           </div>
 
-          {/* Textarea for Description */}
+          {/* Textarea for Description (Will Show in Comments Section) */}
           <div className="form-group">
             <label htmlFor="description">Description</label>
             <textarea
@@ -112,6 +117,7 @@ const TaskForm = ({ task, onSave, onCancel }) => {
               name="description"
               value={formData.description}
               onChange={handleChange}
+              placeholder="Enter task description (will appear in comments)"
             />
           </div>
 

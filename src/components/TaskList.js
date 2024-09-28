@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TaskList.css';
 
 // TaskList Component: Displays a list of tasks with search, select, edit, and delete functionalities
@@ -13,6 +13,12 @@ const TaskList = ({ tasks, onEditTask, onDeleteTask }) => {
   const [selectAll, setSelectAll] = useState(false);
   // State to track selected tasks
   const [selectedTasks, setSelectedTasks] = useState([]);
+
+  // Ensure the component re-renders when tasks are updated
+  useEffect(() => {
+    setSelectedTasks([]);
+    setSelectAll(false);
+  }, [tasks]);
 
   // Toggles the visibility of the dropdown for a specific task
   const handleDropdownToggle = (taskId) => {
@@ -65,7 +71,7 @@ const TaskList = ({ tasks, onEditTask, onDeleteTask }) => {
       task.assignedTo.toLowerCase().includes(searchTermLowercase) ||
       task.status.toLowerCase().includes(searchTermLowercase) ||
       task.priority.toLowerCase().includes(searchTermLowercase) ||
-      task.comments.toLowerCase().includes(searchTermLowercase)
+      (task.comments && task.comments.toLowerCase().includes(searchTermLowercase)) // Added check for comments/description
     );
   });
 
@@ -111,7 +117,7 @@ const TaskList = ({ tasks, onEditTask, onDeleteTask }) => {
             <th>Status</th>
             <th>Due Date</th>
             <th>Priority</th>
-            <th>Comments</th>
+            <th>Comments</th> {/* Comments column */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -129,7 +135,7 @@ const TaskList = ({ tasks, onEditTask, onDeleteTask }) => {
               <td>{task.status}</td>
               <td>{task.dueDate}</td>
               <td>{task.priority}</td>
-              <td>{task.comments}</td>
+              <td>{task.comments || task.description || 'No comments'}</td> {/* Ensure description shows in comments */}
               <td>
                 {/* Dropdown for Edit and Delete Actions */}
                 <div className="dropdown">

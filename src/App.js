@@ -16,29 +16,42 @@ function App() {
   }, []);
 
   const fetchTasks = async () => {
-    const fetchedTasks = await TaskService.getTasks();
-    setTasks(fetchedTasks);
+    try {
+      const fetchedTasks = await TaskService.getTasks();
+      setTasks(fetchedTasks);
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }
   };
 
-  const handleAddTask = (newTask) => {
-    TaskService.addTask(newTask).then(() => {
+  const handleAddTask = async (newTask) => {
+    try {
+      await TaskService.addTask(newTask);
       fetchTasks();
       setIsNewTaskFormOpen(false);
-    });
+    } catch (error) {
+      console.error('Error adding task:', error);
+    }
   };
 
-  const handleEditTask = (updatedTask) => {
-TaskService.updateTask(updatedTask).then(() => {
+  const handleEditTask = async (updatedTask) => {
+    try {
+      await TaskService.updateTask(updatedTask);
       fetchTasks();
       setEditingTask(null);
-    });
+    } catch (error) {
+      console.error('Error updating task:', error);
+    }
   };
 
-  const handleDeleteTask = (taskId) => {
-    TaskService.deleteTask(taskId).then(() => {
+  const handleDeleteTask = async (taskId) => {
+    try {
+      await TaskService.deleteTask(taskId);
       fetchTasks();
       setDeletingTask(null);
-    });
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
   };
 
   return (

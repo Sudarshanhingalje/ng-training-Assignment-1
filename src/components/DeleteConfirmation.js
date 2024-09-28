@@ -2,7 +2,9 @@ import React from 'react';
 import './DeleteConfirmation.css';
 
 // DeleteConfirmation Component: Confirms the deletion of a task
-function DeleteConfirmation({ task, onConfirm, onCancel }) {
+
+function DeleteConfirmation({ task, onConfirm, onCancel })
+ {
   return (
     <div className="delete-confirmation-overlay">
       <div className="delete-confirmation">
